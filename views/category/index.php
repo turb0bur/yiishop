@@ -3,6 +3,7 @@
 /* @var $this yii\web\View */
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 
 ?>
 <section id="slider"><!--slider-->
@@ -119,18 +120,18 @@ use yii\helpers\Html;
                                 <div class="product-image-wrapper">
                                     <div class="single-products">
                                         <div class="productinfo text-center">
-                                            <?= Html::img("@web/images/products/{$hit->img}", ['alt' => $hit->name]) ?>
+                                            <a href="<?= Url::to(['product/view', 'id' => $hit->id]) ?>"><?= Html::img($hit->getImage(), ['alt' => $hit->name]) ?></a>
                                             <h2>$<?= $hit->price ?></h2>
-                                            <p><?= $hit->name ?></p>
+                                            <p><a href="<?= Url::to(['product/view', 'id' => $hit->id]) ?>"><?= $hit->name ?></a></p>
                                             <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                         </div>
-                                        <!--<div class="product-overlay">
-                    <div class="overlay-content">
-                        <h2>$<? /*= $hit->price*/ ?></h2>
-                        <p><? /*= $hit->name*/ ?></p>
-                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                    </div>
-                </div>-->
+                                        <!--                                        <div class="product-overlay">-->
+                                        <!--                                            <div class="overlay-content">-->
+                                        <!--                                                <h2>$--><? //= $hit->price ?><!--</h2>-->
+                                        <!--                                                <p>--><? //= $hit->name ?><!--</p>-->
+                                        <!--                                                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>-->
+                                        <!--                                            </div>-->
+                                        <!--                                        </div>-->
                                         <?php if ($hit->new): ?>
                                             <?= Html::img("@web/images/home/new.png", ['alt' => 'Новинка', 'class' => 'new']) ?>
                                         <?php endif ?>
