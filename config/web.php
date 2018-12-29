@@ -3,12 +3,12 @@
 $params = require(__DIR__ . '/params.php');
 
 $config = [
-    'id'         => 'yiishop',
-    'basePath'   => dirname(__DIR__),
-    'bootstrap'  => ['log'],
-    'language'   => 'uk-UA',
+    'id'           => 'yiishop',
+    'basePath'     => dirname(__DIR__),
+    'bootstrap'    => ['log'],
+    'language'     => 'uk-UA',
     'defaultRoute' => 'category/index',
-    'components' => [
+    'components'   => [
         'request'      => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'BnGrlGSihAqaJ2KDn_KxEpyS0aqf3l98',
@@ -47,12 +47,13 @@ $config = [
             'showScriptName'  => false,
             'rules'           => [
                 'category/<id:\d+>/page/<page:\d+>' => 'category/view',
-                'category/<id:\d+>'                 => 'category/view'
+                'category/<id:\d+>'                 => 'category/view',
+                'product/<id:\d+>'                  => 'product/view',
             ],
         ],
 
     ],
-    'params'     => $params,
+    'params'       => $params,
 ];
 
 if (YII_ENV_DEV) {
