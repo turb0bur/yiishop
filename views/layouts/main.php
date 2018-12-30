@@ -4,9 +4,11 @@
 
 /* @var $content string */
 
+use yii\bootstrap\Modal;
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
+use yii\helpers\Url;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 use app\assets\ltAppAsset;
@@ -65,7 +67,7 @@ ltAppAsset::register($this);
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="logo pull-left">
-                            <a href="<?= \yii\helpers\Url::home()?>"><?= Html::img('@web/images/home/logo.png', ['alt' => 'E-SHOPPER'])?></a>
+                            <a href="<?= \yii\helpers\Url::home() ?>"><?= Html::img('@web/images/home/logo.png', ['alt' => 'E-SHOPPER']) ?></a>
                         </div>
                         <div class="btn-group pull-right">
                             <div class="btn-group">
@@ -97,7 +99,7 @@ ltAppAsset::register($this);
                                 <li><a href="#"><i class="fa fa-user"></i> Account</a></li>
                                 <li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>
                                 <li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li>
-                                <li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Cart</a></li>
+                                <li><a href="#" onclick="getCart()"><i class="fa fa-shopping-cart"></i> Cart</a></li>
                                 <li><a href="login.html"><i class="fa fa-lock"></i> Login</a></li>
                             </ul>
                         </div>
@@ -144,10 +146,18 @@ ltAppAsset::register($this);
                     <div class="col-sm-3">
                         <div class="search_box pull-right">
 
-                            <form action="<?= \yii\helpers\Url::to(['category/search'])?>" method="get">
+                            <form action="<?= \yii\helpers\Url::to(['category/search']) ?>" method="get">
                                 <input type="search" name="search" placeholder="Search"/>
                             </form>
                         </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <?php if (Yii::$app->session->hasFlash('success')): ?>
+                            <div class="alert alert-success alert-dismissible" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <?php echo Yii::$app->session->getFlash('success'); ?>
+                            </div>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
@@ -313,6 +323,19 @@ ltAppAsset::register($this);
         </div>
 
     </footer><!--/Footer-->
+
+    <?php
+    Modal::begin([
+        'header' => '<h2 class="text-center">Your cart</h2>',
+        'id'     => 'cart',
+        'size'   => 'modal-lg',
+        'footer' => '<button type="button" class="btn btn-default" data-dismiss="modal">Continue</button>
+        <a href="' . Url::to(['cart/view']) . '" class="btn btn-success">Check out</a>
+        <button type="button" class="btn btn-danger" onclick="clearCart()">Clear cart</button>'
+    ]);
+
+    Modal::end();
+    ?>
 
     <?php $this->endBody() ?>
     </body>
