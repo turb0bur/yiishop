@@ -55,6 +55,7 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName'  => false,
             'rules'           => [
+//                TODO Add rules for admin orders
                 'category/<id:\d+>/page/<page:\d+>' => 'category/view',
                 'category/<id:\d+>'                 => 'category/view',
                 'product/<id:\d+>'                  => 'product/view',
@@ -65,8 +66,9 @@ $config = [
     ],
     'modules'      => [
         'admin' => [
-            'class'  => 'app\modules\admin\Module',
-            'layout' => 'admin'
+            'class'        => 'app\modules\admin\Module',
+            'layout'       => 'admin',
+            'defaultRoute' => 'order/index',
         ],
     ],
     'params'       => $params,

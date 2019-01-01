@@ -36,32 +36,6 @@ ltAppAsset::register($this);
     <body>
     <?php $this->beginBody() ?>
     <header id="header"><!--header-->
-        <div class="header_top"><!--header_top-->
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="contactinfo">
-                            <ul class="nav nav-pills">
-                                <li><a href="#"><i class="fa fa-phone"></i> +2 95 01 88 821</a></li>
-                                <li><a href="#"><i class="fa fa-envelope"></i> info@domain.com</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="social-icons pull-right">
-                            <ul class="nav navbar-nav">
-                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div><!--/header_top-->
-
         <div class="header-middle"><!--header-middle-->
             <div class="container">
                 <div class="row">
@@ -97,7 +71,7 @@ ltAppAsset::register($this);
                         <div class="shop-menu pull-right">
                             <ul class="nav navbar-nav">
                                 <?php if (!Yii::$app->user->isGuest) : ?>
-                                    <li><a href="<?= Url::to(['/site/logout'])?>"><i class="fa fa-user"></i> <?= Yii::$app->user->identity['username']?> logout</a></li>
+                                    <li><a href="<?= Url::to(['/site/logout']) ?>"><i class="fa fa-user"></i> <?= Yii::$app->user->identity['username'] ?> logout</a></li>
                                 <?php endif; ?>
                                 <li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>
                                 <li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li>
@@ -168,7 +142,9 @@ ltAppAsset::register($this);
         </div><!--/header-bottom-->
     </header><!--/header-->
 
-    <?= $content ?>
+    <div class="container">
+        <?= $content ?>
+    </div>
 
     <?php $this->endBody() ?>
     </body>
