@@ -1,6 +1,6 @@
 <?php
 
-namespace app\models;
+namespace app\modules\admin\models;
 
 use Yii;
 use yii\db\ActiveRecord;
@@ -44,15 +44,15 @@ class Category extends ActiveRecord
     {
         return [
             'id'          => 'ID',
-            'parent_id'   => 'Parent ID',
+            'parent_id'   => 'Parent Category',
             'name'        => 'Name',
             'keywords'    => 'Keywords',
             'description' => 'Description',
         ];
     }
 
-    public function getProducts()
+    public function getParent()
     {
-        return $this->hasMany(Product::class(), ['category_id' => 'id']);
+        return $this->hasOne(Category::className(), ['id' => 'parent_id']);
     }
 }
