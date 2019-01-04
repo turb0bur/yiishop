@@ -3,12 +3,12 @@
 $params = require(__DIR__ . '/params.php');
 
 $config = [
-    'id'           => 'yiishop',
-    'basePath'     => dirname(__DIR__),
-    'bootstrap'    => ['log'],
-    'language'     => 'en-US',
-    'defaultRoute' => 'category/index',
-    'components'   => [
+    'id'            => 'yiishop',
+    'basePath'      => dirname(__DIR__),
+    'bootstrap'     => ['log'],
+    'language'      => 'en-US',
+    'defaultRoute'  => 'category/index',
+    'components'    => [
         'request'      => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'BnGrlGSihAqaJ2KDn_KxEpyS0aqf3l98',
@@ -64,14 +64,34 @@ $config = [
         ],
 
     ],
-    'modules'      => [
+    'modules'       => [
         'admin' => [
             'class'        => 'app\modules\admin\Module',
             'layout'       => 'admin',
             'defaultRoute' => 'order/index',
         ],
     ],
-    'params'       => $params,
+    'controllerMap' => [
+        'elfinder' => [
+            'class'  => 'mihaildev\elfinder\PathController',
+            'access' => ['@'],
+            'root'   => [
+                'baseUrl'  => '/web',
+                'path'     => 'uploads',
+                'name'     => 'Uploads'
+            ],
+//            'watermark' => [
+//                'source'         => __DIR__ . '/logo.png',
+//                'marginRight'    => 5,
+//                'marginBottom'   => 5,
+//                'quality'        => 95,
+//                'transparency'   => 70,
+//                'targetType'     => IMG_GIF | IMG_JPG | IMG_PNG | IMG_WBMP,
+//                'targetMinPixel' => 200
+//            ]
+        ]
+    ],
+    'params'        => $params,
 ];
 
 if (YII_ENV_DEV) {
